@@ -5,8 +5,10 @@ class HashTable
 private:
 	string *data;
 	int capacity;
-	int h2_param;
+	int p2;
 	int cur_size;
+	bool is_prime(int num);
+	int next_prime(int num);
 
 public:
 	HashTable();
