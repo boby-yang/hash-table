@@ -190,7 +190,7 @@ void HashTable::insert(string str)
  * Post: returns true if its string parameter is in the hash table
  * returns false if it is not
  */
-bool HashTable::find(string target)
+bool HashTable::find (string target) const
 {
 	// cout << "Searching for " << target << endl;
 	if ("" == target)
@@ -294,7 +294,7 @@ int HashTable::next_prime(int num)
  * ch0 * 32^n-1 + ch1 * 32^(n-2) + ... + ch(n-2) * 32^1 + ch(n-1) * 32^0
  * and we use honer's method to avoid overflowing
  */
-int HashTable::get_hash_index(string str, int mod_val)
+int HashTable::get_hash_index(string str, int mod_val) const
 {	
 	if (0 == str.size())
 	{

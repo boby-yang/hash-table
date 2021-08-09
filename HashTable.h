@@ -1,4 +1,6 @@
+#pragma once
 #include <string>
+
 using namespace std;
 
 
@@ -15,7 +17,7 @@ private:
 	int cur_size;
 	bool is_prime(int num);
 	int next_prime(int num);
-	int get_hash_index(string str, int mod_val);
+	int get_hash_index(string str, int mod_val)const;
 
 public:
 	HashTable();
@@ -24,11 +26,11 @@ public:
 	~HashTable();
 	HashTable operator=(const HashTable &src);
 	void insert(string strs);
-	bool find(string target);
+	bool find (string target)const;
 	int size();
 	int maxSize();
 	double loadFactor();
-	
+
 	///// for testing purpose
 	void print_table_stats();
 	/////

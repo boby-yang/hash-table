@@ -1,4 +1,5 @@
 #include "HashTable.h"
+#include "spellcheck.h"
 #include <iostream>
 #include <fstream>
 
@@ -100,6 +101,15 @@ void test_word_file(int size, string filename)
 	ht1.print_table_stats();
 }
 
+void print_vector(vector<string> v)
+{
+	for (auto i = v.begin(); i != v.end(); ++i)
+	{
+		cout << *i << ",";
+	}
+
+	cout << endl;
+}
 
 int main()
 {
@@ -110,6 +120,63 @@ int main()
 	// test_cp_const();
 	// test_equal_op();
 	// test_find_insert_cross();
-	test_long_str();
+	// test_long_str();
+
+
+	//// pt 2 table
+	// All ex strings in table
+	HashTable ht = HashTable(3);
+	vector<string> que = {"chate", "atr", "rateat", "poe", "thed"};
+	vector<string> ans = {"chat", "hate", "art", "tar", "rat", "eat", "rate","at", "poet", "poke", "pole", "pope", "pose", "shed", "thee", "them", "they", "thud", "toed"};
+	vector<string> not_ans = {"hat", "cat", "rat", "poetry", "shad", "thus"};
+
+	for (auto it = que.begin(); it != que.end(); ++it)
+	{
+		ht.insert(*it);
+	}
+
+
+	vector<string> extra_fd = extraLetter(ht, "chate");
+	print_vector(extra_fd);
+
+	vector<string> trans_fd = transposition(ht, "atr");
+	print_vector(trans_fd);
+
+	vector<string> missing_sp_fd = missingSpace(ht, "rateat");
+	print_vector(missing_sp_fd);
+
+	vector<string> missing_lt_fd = missingLetter(ht, "poe");
+	print_vector(missing_lt_fd);
+
+	vector<string> incorrect_fd = incorrectLetter(ht, "thed");
+	print_vector(incorrect_fd);
+
+
+	// All not in
+	HashTable ht2 = HashTable(3);
+	for (auto it = ans.begin(); it != ans.end(); ++it)
+	{
+		ht2.insert(*it);
+	}
+
+	for (auto it = not_ans.begin(); it != not_ans.end(); ++it)
+	{
+		ht2.insert(*it);
+	}
+	extra_fd = extraLetter(ht2, "chate");
+	print_vector(extra_fd);
+
+	trans_fd = transposition(ht2, "atr");
+	print_vector(trans_fd);
+
+	missing_sp_fd = missingSpace(ht2, "rateat");
+	print_vector(missing_sp_fd);
+
+	missing_lt_fd = missingLetter(ht2, "poe");
+	print_vector(missing_lt_fd);
+
+	incorrect_fd = incorrectLetter(ht2, "thed");
+	print_vector(incorrect_fd);
+
 	return 0;
 }
