@@ -3,11 +3,6 @@
 
 using namespace std;
 
-
-///// for testing purpose
-#include <iostream>
-/////
-
 class HashTable
 {
 private:
@@ -30,8 +25,4 @@ public:
 	int size();
 	int maxSize();
 	double loadFactor();
-
-	///// for testing purpose
-	void print_table_stats();
-	/////
 };

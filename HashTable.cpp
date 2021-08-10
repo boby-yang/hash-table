@@ -109,41 +109,21 @@ HashTable HashTable::operator=(const HashTable &src)
  */
 void HashTable::insert(string str)
 {
-
-
-	// cout << "Insert "  << str << endl;
-
-
 	if (false == find(str))
 	{
 		int cur_index = get_hash_index(str, capacity);
 		int h2_gap = sec_hash_const - get_hash_index(str, sec_hash_const);
 
-		// cout << "Initial index:" << to_string(cur_index) << endl;
-		// cout << "Gap:" << to_string(h2_gap) << endl;
-
 		while ("" != data[cur_index])
 		{
-
-
-			// cout << "Looking at index:" << to_string(cur_index) << endl;
-
 
 			cur_index = (cur_index + h2_gap) % capacity;
 		}
 		data[cur_index] = str;
 		cur_size++;
 
-
-		// cout << "Insert " << str << " at index:" << to_string(cur_index) << endl;
-		// print_table_stats();
-		// cout << endl;
-
-
 		if (loadFactor() > 0.67)
 		{
-
-			// cout << "Table needs expansion" << endl;
 
 			int new_size = next_prime(2 * capacity);
 			int old_size = capacity;
@@ -158,12 +138,6 @@ void HashTable::insert(string str)
 			sec_hash_const = next_prime(new_size / 2);
 			cur_size = 0;
 
-
-			// cout << "Before migration:" << endl;
-			// print_table_stats();
-			// cout << endl;
-
-
 			for (int i = 0; i < old_size; ++i)
 			{
 				if ("" != tmp[i])
@@ -171,13 +145,6 @@ void HashTable::insert(string str)
 					insert(tmp[i]);	
 				}				
 			}
-
-
-
-			// cout << "After migration:" << endl;
-			// print_table_stats();
-			// cout << endl;
-
 
 			delete[] tmp; // need to test for valgrind
 		}
@@ -192,16 +159,12 @@ void HashTable::insert(string str)
  */
 bool HashTable::find (string target) const
 {
-	// cout << "Searching for " << target << endl;
 	if ("" == target)
 	{
 		return false;
 	}
 	int cur_index = get_hash_index(target, capacity);
 	int h2_gap = sec_hash_const - get_hash_index(target, sec_hash_const);
-
-	// cout << "Initial index:" << to_string(cur_index) << endl;
-	// cout << "Gap:" << to_string(h2_gap) << endl;
 
 	while ("" != data[cur_index])
 	{
@@ -210,11 +173,6 @@ bool HashTable::find (string target) const
 			return true;
 		}
 		cur_index = (cur_index + h2_gap) % capacity;
-
-
-		// cout << "Cur index = " << to_string(cur_index) << " Gap:" << to_string(h2_gap) << endl;
-
-
 	}
 	return false;
 }
@@ -308,30 +266,3 @@ int HashTable::get_hash_index(string str, int mod_val) const
 	}
 	return out;
 }
-
-
-
-///// for testing purpose
-void HashTable::print_table_stats()
-{
-	cout << "Table stats:" << endl;
-	cout << "Size:" << to_string(cur_size) << endl;
-	cout << "Capacity:" << to_string(capacity) << endl;
-	cout << "P2:" << to_string(sec_hash_const) << endl;
-	cout << "Load:" << to_string(loadFactor()) << endl;
-
-	int cnt = 0;
-	cout << "Data:" << endl;
-	for (int i = 0; i < capacity; ++i)
-	{
-		if ("" != data[i])
-		{	
-			cout << to_string(i) << ":" << data[i] << " ";
-			++cnt;
-		}
-	}
-	cout << endl;
-	cout << "Num valid data:" << to_string(cnt) << endl;
-	cout << endl;
-}
-/////

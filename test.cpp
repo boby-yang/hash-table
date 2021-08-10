@@ -11,7 +11,7 @@ void test_find_insert_cross()
 	ht1.insert("l");
 	ht1.insert("w");
 	cout << "All inserts done" << endl;
-	ht1.print_table_stats();
+	// ht1.print_table_stats();
 
 	cout << "a in table: " << to_string(ht1.find("a")) << endl;
 	cout << "c in table: " << to_string(ht1.find("c")) << endl;
@@ -33,10 +33,10 @@ void test_equal_op()
 	HashTable ht2 = ht1;
 
 	cout << "Original Table" << endl;
-	ht1.print_table_stats();
+	// ht1.print_table_stats();
 
 	cout << "Copied Table" << endl;
-	ht2.print_table_stats();
+	// ht2.print_table_stats();
 }
 
 void test_long_str()
@@ -45,7 +45,7 @@ void test_long_str()
 	ht1.insert("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 	ht1.insert("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 	cout << "All inserts done" << endl;
-	ht1.print_table_stats();
+	// ht1.print_table_stats();
 
 }
 
@@ -60,24 +60,24 @@ void test_cp_const()
 	HashTable ht2 = HashTable(ht1);
 
 	cout << "Original Table" << endl;
-	ht1.print_table_stats();
+	// ht1.print_table_stats();
 
 	cout << "Copied Table" << endl;
-	ht2.print_table_stats();
+	// ht2.print_table_stats();
 }
 
 void test_insert_accuracy()
 {
 	HashTable ht1 = HashTable(5);
 	cout << "Before insert" << endl;
-	ht1.print_table_stats();
+	// ht1.print_table_stats();
 
 	ht1.insert("a"); // str value 1
 	ht1.insert("c"); // str value 3
 	ht1.insert("l"); // str value 12 => 1 -> 3-> 5
 	ht1.insert("w"); // str value 23 => 1 -> 6
 	cout << "All inserts done" << endl;
-	ht1.print_table_stats();
+	// ht1.print_table_stats();
 }
 
 
@@ -89,7 +89,7 @@ void test_word_file(int size, string filename)
 		ht1 = HashTable(size);
 
 	cout << "Before insert" << endl;
-	ht1.print_table_stats();
+	// ht1.print_table_stats();
 
 	string line;
 	while (getline(infile, line, '\n'))
@@ -98,7 +98,7 @@ void test_word_file(int size, string filename)
 	}
 
 	cout << "All inserts done" << endl;
-	ht1.print_table_stats();
+	// ht1.print_table_stats();
 }
 
 void print_vector(vector<string> v)
